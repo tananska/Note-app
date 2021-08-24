@@ -2,9 +2,9 @@ import React from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import {addNote, deleteNote} from '../redux/actions/noteActions';
 import {setNoteContent, setNoteTitle,setNoteId, resetInputs} from '../redux/actions/modalActions';
+import Modal from "react-bootstrap/Modal";
 
-
-const Modal = () =>{
+const ModalNote = () =>{
     const id = useSelector(state => state.inputs.id);
     const title = useSelector(state => state.inputs.title);
     const content = useSelector(state => state.inputs.content);
@@ -24,10 +24,22 @@ const Modal = () =>{
         dispatch(deleteNote(id))
         dispatch(resetInputs())
       }
+        const [isOpen, setIsOpen] = React.useState(false);
+
+        const showModal = () => {
+          setIsOpen(true);
+        };
+
+        const hideModal = () => {
+          setIsOpen(false);
+        };
     
-    return( 
-        <div className="modal" >
-            <form className="modal-content">
+    
+    return(
+      <>
+      <button onClick={showModal}>Display Modal</button>
+        <Modal show={isOpen} onHide={hideModal} className="modal">
+            <Modal.Body><form className="modal-content">
                 <input
                     placeholder="Title"
                     value={title}
@@ -46,15 +58,17 @@ const Modal = () =>{
 
                 />
                 <div className="modalAddBtn">
-                <button onClick={addNote}>Add</button>
+                <button >Add</button>
                 </div>
                 
                 <div className="modalCloseBtn">
-                <button onClick={deleteNote}>Close</button>
+                <button onClick={hideModal}>Close</button>
                   </div>
         
-            </form>   
-        </div>
-    );
+            </form>  
+        </Modal.Body> 
+      </Modal>
+    </>
+  );
 };
-export default Modal;
+export default ModalNote;

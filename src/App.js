@@ -2,7 +2,7 @@ import React from "react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import NoteList from "./components/NotesList";
-import Modal from "./components/Modal";
+import ModalNote from "./components/Modal";
 import store from "./redux/store";
 import {Provider} from 'react-redux';
 
@@ -14,7 +14,7 @@ function App(){
     <Provider store= {store}>
       <div className='container'>
         <Header />
-        <Modal />
+        <ModalNote />
         <NoteList />
         <Footer />
       </div>
