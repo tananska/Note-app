@@ -6,13 +6,13 @@
     payload: note
     };
   }
-  const updateNote = (index, note) =>{
+  /*const updateNote = (index, note) =>{
     return {
       type: actionTypes.UPDATE_NOTE,
       payload: index, 
       note
     };
-  }
+  }*/
   const deleteNote = (index) =>{
     return {
     type: actionTypes.DELETE_NOTE,

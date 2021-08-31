@@ -11,13 +11,13 @@ const inputs = (state = initialState, action) => {
   console.log(action);
   switch (action.type) {
     
-    case actionTypes.SET_NOTE_ID: {
+    /*case actionTypes.SET_NOTE_ID: {
       const { id } = action;
       return {
         ...state,
         id: action.playload
       }
-    }
+    }*/
     case actionTypes.SHOW_MODAL: {
       return {
         ...state,

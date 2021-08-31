@@ -1,10 +1,10 @@
 import actionTypes from '../actionTypes';
 
 
-  const setNoteId = (id) => ({
+  /*const setNoteId = (id) => ({
     type: actionTypes.SET_NOTE_ID,
     id,
-  })
+  })*/
   const resetInputs = () => ({
     type: actionTypes.RESET_INPUT,
   })
@@ -23,4 +23,4 @@ import actionTypes from '../actionTypes';
   }
 
   
-    export {setNoteId, resetInputs, showNoteModal, hideNoteModal};
+    export {resetInputs, showNoteModal, hideNoteModal};

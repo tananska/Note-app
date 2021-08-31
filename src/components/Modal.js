@@ -1,14 +1,14 @@
 
 import React, {useState} from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import {addNote as addNoteAction, updateNote as updateNoteAction} from '../redux/actions/noteActions';
+import {addNote as addNoteAction} from '../redux/actions/noteActions';
 import {resetInputs, hideNoteModal} from '../redux/actions/modalActions';
 import Modal from "react-bootstrap/Modal";
 
 const NoteModal = () =>{
   
   const dispatch = useDispatch();
-  const id = useSelector(state => state.inputs.id);
+  //const id = useSelector(state => state.inputs.id);
   const isOpen = useSelector(state => state.inputs.isOpen);
 
   const [title, setTitle] = useState(null);
@@ -26,7 +26,7 @@ const NoteModal = () =>{
         }
         dispatch(resetInputs());
       }
-      const updateNote =() => {
+      /*const updateNote =() => {
         if(title && content){
           dispatch(updateNoteAction(id,{
             title,
@@ -34,7 +34,7 @@ const NoteModal = () =>{
           }))
           dispatch(resetInputs())
         }
-      }
+      }*/
       const hideModal = (e) => {
         e.preventDefault();
         console.log('isOpen: ', isOpen);

@@ -13,14 +13,14 @@ const notes = (state = initialState, action) =>{
                 notes: [...state.notes, action.payload]
             }
         
-        case actionTypes.UPDATE_NOTE:{
+        /*case actionTypes.UPDATE_NOTE:{
             const {index, note} = action;
             const notes = [...state.notes];
             notes[index] = note
             return{
                 notes,
             }
-        }
+        }*/
         case actionTypes.DELETE_NOTE:
             const {index} = action;
             const notes = [...state.notes];

@@ -18,8 +18,8 @@ function Header(){
     return (
       <header>
         <h1>Keeper</h1>
-      <button className="headerButton" onClick={showModal}><AddIcon /></button>
-      <button className="headerButton"><SearchIcon /></button>
+        <button className="headerButton" onClick={showModal}><AddIcon /></button>
+        <button className="headerButton"><SearchIcon /></button>
       </header>
     );
 }
