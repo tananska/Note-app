@@ -1,14 +1,23 @@
  import actionTypes from '../actionTypes';
-//let nextTodoId = 0;
-
-
-  const addNote = (note) => ({
+ 
+  const addNote = (note) => {
+    return {
     type: actionTypes.ADD_NOTE,
-    note
-  })
-  const deleteNote = (index) =>({
+    payload: note
+    };
+  }
+  const updateNote = (index, note) =>{
+    return {
+      type: actionTypes.UPDATE_NOTE,
+      payload: index, 
+      note
+    };
+  }
+  const deleteNote = (index) =>{
+    return {
     type: actionTypes.DELETE_NOTE,
-    index
-  })
+    payload: index
+    };
+  }
 
-  export {addNote, deleteNote};
+  export {addNote, updateNote, deleteNote};

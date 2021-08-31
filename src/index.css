@@ -140,4 +140,10 @@ form.modal-content button {
   cursor: pointer;
   outline: none;
 }
+.headerButton {
+  position: relative;
+  display: inline-block;
+  /*top: -50px;
+  left: 70%;*/
+}
 

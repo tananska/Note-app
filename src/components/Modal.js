@@ -1,74 +1,80 @@
-import React from "react";
+
+import React, {useState} from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import {addNote, deleteNote} from '../redux/actions/noteActions';
-import {setNoteContent, setNoteTitle,setNoteId, resetInputs} from '../redux/actions/modalActions';
+import {addNote as addNoteAction, updateNote as updateNoteAction} from '../redux/actions/noteActions';
+import {resetInputs, hideNoteModal} from '../redux/actions/modalActions';
 import Modal from "react-bootstrap/Modal";
 
-const ModalNote = () =>{
-    const id = useSelector(state => state.inputs.id);
-    const title = useSelector(state => state.inputs.title);
-    const content = useSelector(state => state.inputs.content);
-    const dispatch = useDispatch();
+const NoteModal = () =>{
+  
+  const dispatch = useDispatch();
+  const id = useSelector(state => state.inputs.id);
+  const isOpen = useSelector(state => state.inputs.isOpen);
 
-    const addNote = () => {
+  const [title, setTitle] = useState(null);
+  const [content, setContent] = useState(null);
+  
+    const addNote = (e) => {
+      e.preventDefault();
+      console.log('addNote: ', title, content);
         if(title && content) {
-          dispatch(addNote({
+          dispatch(addNoteAction({
+            title,
+            content
+          }))
+          
+        }
+        dispatch(resetInputs());
+      }
+      const updateNote =() => {
+        if(title && content){
+          dispatch(updateNoteAction(id,{
             title,
             content
           }))
           dispatch(resetInputs())
         }
       }
-    
-      const deleteNote = () => {
-        dispatch(deleteNote(id))
-        dispatch(resetInputs())
+      const hideModal = (e) => {
+        e.preventDefault();
+        console.log('isOpen: ', isOpen);
+        dispatch(hideNoteModal({
+          isOpen
+        }))
       }
-        const [isOpen, setIsOpen] = React.useState(false);
 
-        const showModal = () => {
-          setIsOpen(true);
-        };
-
-        const hideModal = () => {
-          setIsOpen(false);
-        };
-    
-    
-    return(
+    return (
       <>
-      <button onClick={showModal}>Display Modal</button>
-        <Modal show={isOpen} onHide={hideModal} className="modal">
-            <Modal.Body><form className="modal-content">
-                <input
-                    placeholder="Title"
-                    value={title}
-                    onChange={e => 
-                    dispatch(setNoteTitle(e.target.value))
-                    }
-                />
-            
+        <Modal show={isOpen} className="modal">
+            <Modal.Body>
+              <form className="modal-content">
+                  
+                  <input
+                      placeholder="Title"
+                      value={title}
+                      onChange={e =>setTitle(e.target.value)}
+                  />
 
-                <textarea
-                    placeholder="Take a note..."
-                    value={content}
-                    onChange={e => 
-                    dispatch(setNoteContent(e.target.value))
-                    }
-
-                />
-                <div className="modalAddBtn">
-                <button >Add</button>
-                </div>
-                
-                <div className="modalCloseBtn">
-                <button onClick={hideModal}>Close</button>
+                  <textarea
+                      placeholder="Take a note..."
+                      value={content}
+                      onChange={e =>{
+                        setContent(e.target.value)
+                      }}
+                      
+                  />
+                  <div className="modalAddBtn">
+                  <button onClick={addNote}>Add</button>
                   </div>
-        
-            </form>  
+                  
+                  <div className="modalCloseBtn">
+                  <button onClick={hideModal}>Close</button>
+                    </div>
+          
+              </form>  
         </Modal.Body> 
       </Modal>
     </>
   );
 };
-export default ModalNote;
+export default NoteModal;

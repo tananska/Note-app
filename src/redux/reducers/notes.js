@@ -1,29 +1,34 @@
-import actionTypes from "../actionTypes"
+import actionTypes from "../actionTypes";
+
 const initialState = {
     notes: []
-}
+  }
 
 const notes = (state = initialState, action) =>{
+    console.log(action);
     switch(action.type){
-        case actionTypes.ADD_NOTE:{
-                const notes = [...state.notes];
-                notes.push(action.note);
-                return {
-                    notes,
-            }
-        }
-        case actionTypes.DELETE_NOTE:{
-            const {index} = action;
-            const notes = [];
-            state.notes.forEach((note, i) => {
-                if(index !== i) {
-                  notes.push(note)
-                }
-            })      
+        case actionTypes.ADD_NOTE:
             return {
-              notes,
+            //...state,
+                notes: [...state.notes, action.payload]
+            }
+        
+        case actionTypes.UPDATE_NOTE:{
+            const {index, note} = action;
+            const notes = [...state.notes];
+            notes[index] = note
+            return{
+                notes,
             }
         }
+        case actionTypes.DELETE_NOTE:
+            const {index} = action;
+            const notes = [...state.notes];
+            notes.splice(index, 1);
+          return {
+              notes,
+          }
+        
         default: 
         return state;
     }

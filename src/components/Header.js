@@ -1,23 +1,25 @@
 import React from "react";
+import { useDispatch, useSelector } from 'react-redux';
+import {showNoteModal} from '../redux/actions/modalActions';
 import SearchIcon from '@material-ui/icons/Search';
 import AddIcon from '@material-ui/icons/Add';
-import Fab from '@material-ui/core/Fab';
-import { useDispatch, useSelector } from 'react-redux';
-
 
 
 function Header(){
-  /*const dispatch = useDispatch();
+    const dispatch = useDispatch();
+    const isOpen = useSelector(state => state.inputs.isOpen);
 
-  showModal = () => {
-    dispatch(showModal())
-}*/
+    const showModal = () => {
+      console.log('isOpenShow: ', isOpen);
+      dispatch(showNoteModal({
+        isOpen
+      }))
+    }
     return (
       <header>
-
         <h1>Keeper</h1>
-        <button><SearchIcon /></button>
-        <button ><AddIcon /></button>
+      <button className="headerButton" onClick={showModal}><AddIcon /></button>
+      <button className="headerButton"><SearchIcon /></button>
       </header>
     );
 }

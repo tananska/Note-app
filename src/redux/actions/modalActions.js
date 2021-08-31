@@ -1,14 +1,6 @@
 import actionTypes from '../actionTypes';
 
 
-  const setNoteTitle = (title) => ({
-    type: actionTypes.SET_NOTE_TITLE,
-    title,
-  })
-  const setNoteContent = (content) => ({
-    type: actionTypes.SET_NOTE_CONTENT,
-    content
-  })
   const setNoteId = (id) => ({
     type: actionTypes.SET_NOTE_ID,
     id,
@@ -16,12 +8,19 @@ import actionTypes from '../actionTypes';
   const resetInputs = () => ({
     type: actionTypes.RESET_INPUT,
   })
-  /*const showModal = () =>({
+  
+  const showNoteModal = (isOpen) => {
+    return {
     type: actionTypes.SHOW_MODAL,
-  })
-  const hideModal = () =>({
+    payload: isOpen,
+    };
+  }
+  const hideNoteModal = (isOpen) => {
+    return {
     type: actionTypes.HIDE_MODAL,
-  })*/
+    payload: isOpen,
+    };
+  }
 
-    export {setNoteTitle, setNoteContent, setNoteId, 
-      resetInputs};
+  
+    export {setNoteId, resetInputs, showNoteModal, hideNoteModal};

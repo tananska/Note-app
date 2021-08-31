@@ -1,7 +1,7 @@
 import React from 'react';
 import DeleteIcon from '@material-ui/icons/Delete';
 
-const Note = ({ title, content, onItemClicked}) => {
+const Note = ({title,content, onItemClicked}) => {
     return (
         <div className="note">
             <h1>{title}</h1>
