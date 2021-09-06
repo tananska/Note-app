@@ -20,4 +20,4 @@
     };
   }
 
-  export {addNote, updateNote, deleteNote};
+  export {addNote, deleteNote};
